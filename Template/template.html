@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>appHTML</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600,700" rel="stylesheet">
+    <meta content="width=480, initial-scale=1" name="viewport">
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            font-family: 'Raleway', sans-serif;
+            background: #4527a0;
+        }
+
+        table {
+            align-items: center;
+            border: none;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .content {
+            margin-top: 90px;
+            padding: 0px;
+        }
+
+        .button {
+            padding: 10px 10px;
+            height: 120px;
+            width: 120px;
+            border-radius: 5px;
+            font-size: 80px;
+        }
+
+        button[type=button] {
+            font-family: 'Raleway';
+            font-weight: bold;
+            font-size: 100%;
+            text-transform: uppercase;
+            vertical-align: top;
+            height: 90px;
+            min-width: 90%;
+            padding: 0px 5px;
+            margin-right: 6px;
+            border-radius: 15px;
+            border: none;
+            color: #fff;
+            background-color: #000;
+            background: linear-gradient(#343434 20%, #000 100%);
+            cursor: pointer;
+        }
+
+        button[type=button].red {
+            color: #fff;
+            background-color: #94132e;
+            background: linear-gradient(#d42043 20%, #94132e 100%);
+        }
+
+        button[type=button].red:enabled:hover {
+            background: linear-gradient(#d42043, #d42043);
+            border: none;
+        }
+
+        button[type=button]:active {
+            background: linear-gradient(#343434, #343434);
+        }
+
+        button[type=button].red:enabled:hover:active {
+            background: linear-gradient(#94132e, #94132e);
+        }
+
+        button[type=button]:disabled {
+            color: #252525;
+            background: linear-gradient(#575757 20%, #252525 100%);
+        }
+
+        button[type=button][pressed=pressed].red {
+            color: #5c0d1d;
+        }
+
+        .appName {
+            color: #ffffff;
+            left: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            vertical-align: top;
+        }
+
+    </style>
+    <style>
+    </style>
+</head>
+<body>
+<div align="center" class="content">
+    <table align="center" border="0" class="table" width="100%">
+        <tbody>
+        <tr>
+            <td>
+                <div style="padding-top: 8px"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="appName" style="font-size: 34px;">
+                    Template
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding-top: 8px"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding-top: 45px"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="button red" id="Button" type="button">Ping!</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding-top: 25px"></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script>
+    //Template created by FluffyJenkins 26/08/2018
+
+    var appUUID;
+
+    function emitWebEvent(obj) {
+        if (window.qt) {
+            obj.appUUID = appUUID; // Appends the appUUID for checking that its from the correct html/qml.
+            EventBridge.emitWebEvent(JSON.stringify(obj)); // So you can just send a JSON object without having to stringify.
+        }
+    }
+
+    function main() {
+
+        var parsedUrl = new URL(window.location.href);
+        appUUID = parsedUrl.searchParams.get("appUUID");
+
+        if (window.qt) {
+            setTimeout(function () {
+                console.log("connecting to eventbridge");
+                EventBridge.scriptEventReceived.connect(function (message) {
+                    console.log(message);
+                    var data = JSON.parse(message);
+                    if (data.appUUID === appUUID) {
+                        if (data.type === "PONG") {
+                            alert("Pong from html!");
+                        }
+                    }
+                });
+            }, 100); // Delay to allow everything to settle
+        }
+
+        if (window.qt) {
+            setTimeout(function () {
+                emitWebEvent({
+                    "type": "ready"
+                });
+            }, 250); // Delay to allow everything to settle
+            console.log("sending ready signal!");
+        }
+
+        $("#Button").click(function () {
+            emitWebEvent({"type":"PING"}); // Send to the interface script
+        });
+    }
+
+    $(document).ready(main);
+
+</script>
+</body>
+</html>
