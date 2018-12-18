@@ -25,7 +25,7 @@
                 position: MyAvatar.position,
                 volume: userData.volume ? userData.volume : 0.3,
                 pitch: 1,
-                localOnly: true
+                localOnly: false
             });
         }
     }
