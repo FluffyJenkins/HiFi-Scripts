@@ -1,7 +1,7 @@
 # soundOnEntry
 
 ## How to use! 
-##### (for demo entity to import click [here](.soundOnEntry%20Demo.json))
+##### (for demo entity to import click [here](soundOnEntry%20Demo.json))
 
 1. You firstly need an entity to act as the area for the avatar to be in for the script.
 2. You will need to set the entity to be collisionless and when you are done, invisible as well!
