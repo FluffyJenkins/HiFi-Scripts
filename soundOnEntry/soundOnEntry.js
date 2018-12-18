@@ -2,6 +2,8 @@
     var _entityID = null;
     var userData;
 
+    var sound = null;
+
     function getUserData(entID) {
         try {
             userData = JSON.parse(Entities.getEntityProperties(entID).userData);
@@ -13,6 +15,7 @@
     this.preload = function (entityID) {
         _entityID = entityID;
         getUserData(_entityID);
+        sound = SoundCache.getSound(userData.soundURL);
     };
 
     function playSound() {
