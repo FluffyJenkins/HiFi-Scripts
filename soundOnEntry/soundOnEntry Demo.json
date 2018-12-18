@@ -1,0 +1,65 @@
+{
+  "DataVersion": 0,
+  "Entities": [
+    {
+    "id": "{4f10a5a6-6214-465f-ba42-3c59f17c7749}",
+    "type": "Box",
+    "created": "2018-12-18T00:21:04Z",
+    "age": 605.9862670898438,
+    "ageAsText": "0 hours 10 minutes 5 seconds",
+    "lastEdited": 1545092916730767,
+    "lastEditedBy": "{9f8d135c-1b08-44ac-929e-e8390e7642c6}",
+    "dimensions": {
+        "x": 0.6220098733901978,
+        "y": 1.5399848222732544,
+        "z": 1.5399848222732544
+    },
+    "rotation": {
+        "x": -0.0000152587890625,
+        "y": -0.0000152587890625,
+        "z": -0.0000152587890625,
+        "w": 1
+    },
+    "damping": 0,
+    "lifetime": 172800,
+    "script": "https://raw.githubusercontent.com/FluffyJenkins/HiFi-Scripts/master/soundOnEntry/soundOnEntry.js?",
+    "scriptTimestamp": 1545092896223,
+    "angularDamping": 0,
+    "collisionless": true,
+    "ignoreForCollisions": true,
+    "userData": "{\"soundURL\":\"https://www.myinstants.com/media/sounds/engineer_no01.mp3\",\"volume\":0.4}",
+    "name": "soundOnEntry Demo",
+    "shape": "Cube",
+    "color": {
+        "red": 0,
+        "green": 180,
+        "blue": 239
+    },
+    "queryAACube": {
+        "x": -1.13247549533844,
+        "y": -1.13247549533844,
+        "z": -1.13247549533844,
+        "scale": 2.26495099067688
+    },
+    "grab": {
+        "grabbable": false,
+        "equippableLeftRotation": {
+            "x": -0.0000152587890625,
+            "y": -0.0000152587890625,
+            "z": -0.0000152587890625,
+            "w": 1
+        },
+        "equippableRightRotation": {
+            "x": -0.0000152587890625,
+            "y": -0.0000152587890625,
+            "z": -0.0000152587890625,
+            "w": 1
+        }
+    },
+    "clientOnly": false,
+    "owningAvatarID": "{00000000-0000-0000-0000-000000000000}"
+}
+    ],
+  "Id": "{3849764e-d27c-45c3-8de9-4478c0ae7c70}",
+  "Version": 96
+}
