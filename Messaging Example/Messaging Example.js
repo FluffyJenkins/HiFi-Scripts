@@ -14,17 +14,20 @@
     and finally if the script doesn't cleanup (cause this.unload isn't reliable)
     Messages.sendMessage("channelName",JSON.stringify({"cmd":"cleanup"}));
 
-    I know that you should have a Messages.subscribe but that whole business with it is wack dude.
+    I know that you should have a Messages.unsubscribe but that whole business with it is wack dude.
 
      */
 
+    var channelName = "channelName";
+
     this.preload = function (entityID) {
+        Messages.subscribe(channelName);
         Messages.messageReceived.connect(messageReceived);
     };
 
 
     function messageReceived(channel, message, sender, local) {
-        if (channel === "channelName") {
+        if (channel === channelName) {
 
             var cmd = {FAILED: true};
             try {
