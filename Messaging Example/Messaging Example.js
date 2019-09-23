@@ -19,8 +19,10 @@
      */
 
     var channelName = "channelName";
+    var id;
 
     this.preload = function (entityID) {
+        id = entityID;
         Messages.subscribe(channelName);
         Messages.messageReceived.connect(messageReceived);
     };
@@ -37,9 +39,10 @@
             }
             if (!cmd.FAILED) {
                 if (cmd.ping) {
-                    console.log("MessageExample: "+cmd.pong);
+                    console.log("MessageExample: "+cmd.ping);
                 }
                 if (cmd.color) {
+                    Entities.editEntity(id,{"color":cmd.color});
                     console.log("MessageExample: Changed colour to "+cmd.color);
                 }
                 if(cmd.cmd === "cleanup"){
